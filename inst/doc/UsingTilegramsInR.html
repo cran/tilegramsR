@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -12,12 +12,50 @@
 
 <meta name="author" content="Bhaskar V. Karambelar" />
 
-<meta name="date" content="2016-11-08" />
+<meta name="date" content="2017-03-29" />
 
 <title>Using Tilegrams in R</title>
 
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 
@@ -32,96 +70,154 @@
 
 <h1 class="title toc-ignore">Using Tilegrams in R</h1>
 <h4 class="author"><em>Bhaskar V. Karambelar</em></h4>
-<h4 class="date"><em>2016-11-08</em></h4>
+<h4 class="date"><em>2017-03-29</em></h4>
 
 
 
 <p>The goal of tilegramsR is to provide R spatial objects representing Tilegrams. The primary purpose of this data is for plotting either using base plotting, ggplot2 or leaflet. To know more about Tilegrams see <a href="https://github.com/PitchInteractiveInc/tilegrams/blob/master/MANUAL.md">this post</a> and a <a href="https://pitchinteractiveinc.github.io/tilegrams/">this web app</a>.</p>
-<div id="data" class="section level2">
-<h2>Data</h2>
-<p>The package provides the following spatial objects</p>
-<div id="pitch-interactive-population-based-tilegram" class="section level4">
-<h4>Pitch Interactive Population based Tilegram</h4>
+<div id="usage" class="section level3">
+<h3>Usage</h3>
+<div id="installation" class="section level4">
+<h4>Installation</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">'tilegramsR'</span>)
+
+<span class="co">#OR Latest Development version</span>
+
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">'bhaskarvk/tilegramsR'</span>)</code></pre></div>
+</div>
+<div id="example-code" class="section level4">
+<h4>Example Code</h4>
+<p>Check out <code>inst\examples</code> folder, or see it in action at <a href="http://rpubs.com/bhaskarvk/tilegramsR">Rpubs: tilegramsR</a> and <a href="http://rpubs.com/bhaskarvk/electoral-Map-2016">Rpubs: Election Map</a>.</p>
+</div>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>The package provides spatial objects in <a href="https://github.com/edzer/sfr">sf</a> format.</p>
+<div id="pitch-interactive-tilegrams" class="section level4">
+<h4>Pitch Interactive Tilegrams</h4>
+<div id="u.s.a" class="section level5">
+<h5>U.S.A</h5>
 <ul>
-<li><strong>Pitch_US_Population_2016_v1</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 500K people</li>
-<li><strong>Pitch_US_Population_2016_v1.states</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>Pitch_US_Population_2016_v1.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_Pitch_US_Population_2016_v1</strong>: A <code>sf</code> object where each feature = 500K people</li>
+<li><strong>sf_Pitch_US_Population_2016_v1.states</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_Pitch_US_Population_2016_v1.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
+</div>
+<div id="germany" class="section level5">
+<h5>Germany</h5>
+<ul>
+<li><strong>sf_germany_constituencies</strong>: A <code>sf</code> object where each feature is a German Constituency</li>
+<li><strong>sf_germany_constituencies.centers</strong>: A <code>sf</code> object of centroids of each German Constituency</li>
+</ul>
+</div>
+<div id="france" class="section level5">
+<h5>France</h5>
+<ul>
+<li><strong>sf_france_regions_population</strong>: A <code>sf</code> object of French regions</li>
+<li><strong>sf_france_regions_population.regions</strong>: A <code>sf</code> object of boundaries of French regions</li>
+<li><strong>sf_france_regions_population.centers</strong>: A <code>sf</code> object of centroids of each French region</li>
+<li><strong>sf_france_all_regions_population</strong>: A <code>sf</code> object of French Regions including overseas regions</li>
+<li><strong>sf_france_all_regions_population.regions</strong>: A <code>sf</code> object of boundaries of all French regions</li>
+<li><strong>sf_france_all_regions_population.centers</strong>: A <code>sf</code> object of centroids of each French Region including overseas regions</li>
+<li><strong>sf_france_departments</strong>: A <code>sf</code> object of French departments</li>
+<li><strong>sf_france_departments.centers</strong>: A <code>sf</code> object of centroids of each French department</li>
+</ul>
+</div>
 </div>
 <div id="fivethirtyeights-electoral-college-tilegram" class="section level4">
 <h4>fivethirtyeight’s Electoral College Tilegram</h4>
 <ul>
-<li><strong>FiveThirtyEightElectoralCollege</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 electoral college</li>
-<li><strong>FiveThirtyEightElectoralCollege.states</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>FiveThirtyEightElectoralCollege.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_FiveThirtyEightElectoralCollege</strong>: A <code>sf</code> object where each feature = 1 electoral college</li>
+<li><strong>sf_FiveThirtyEightElectoralCollege.states</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_FiveThirtyEightElectoralCollege.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
-<div id="npr-1-state-1-hexagon-tilegram" class="section level4">
-<h4>NPR 1 State = 1 Hexagon Tilegram</h4>
+<div id="npr" class="section level4">
+<h4>NPR</h4>
+<div id="hexagon-tilegram" class="section level5">
+<h5>Hexagon Tilegram</h5>
 <ul>
-<li><strong>NPR1to1</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>NPR1to1.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_NPR1to1</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_NPR1to1.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
-<div id="daily-kos-dual-hexagon-tilegram" class="section level4">
-<h4>Daily KOS Dual Hexagon Tilegram</h4>
+<div id="npr.demerscartogram" class="section level5">
+<h5>NPR.DemersCartogram</h5>
 <ul>
-<li><strong>DKOS_50_State_OuterHex_Tilemap_v1</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>DKOS_50_State_InnerHex_Tilemap_v1</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>DKOS_50_State_Hex_Tilemap_v1.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_NPR.DemersCartogram</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_NPR.DemersCartogram.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
-<div id="daily-kos-congressional-districts-tilegram" class="section level4">
-<h4>Daily KOS Congressional Districts Tilegram</h4>
+</div>
+<div id="daily-kos" class="section level4">
+<h4>Daily KOS</h4>
+<div id="dual-hexagon-tilegram" class="section level5">
+<h5>Dual Hexagon Tilegram</h5>
 <ul>
-<li><strong>DKOS_CD_Hexmap_v1.1</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 congressional District</li>
-<li><strong>DKOS_CD_Hexmap_v1.1.states</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>DKOS_CD_Hexmap_v1.1.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_DKOS_50_State_OuterHex_Tilemap_v1</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_DKOS_50_State_InnerHex_Tilemap_v1</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_DKOS_50_State_Hex_Tilemap_v1.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
-<div id="daily-kos-electoral-college-tilegram" class="section level4">
-<h4>Daily KOS Electoral College Tilegram</h4>
+<div id="congressional-districts-tilegram" class="section level5">
+<h5>Congressional Districts Tilegram</h5>
 <ul>
-<li><strong>DKOS_Electoral_College_Map_v1</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 electoral college</li>
-<li><strong>DKOS_Electoral_College_Map_v1.states</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>DKOS_Electoral_College_Map_v1.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_DKOS_CD_Hexmap_v1.1</strong>: A <code>sf</code> object where each feature = 1 congressional District</li>
+<li><strong>sf_DKOS_CD_Hexmap_v1.1.states</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_DKOS_CD_Hexmap_v1.1.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
-<div id="daily-kos-distorted-electoral-college-tilegram" class="section level4">
-<h4>Daily KOS Distorted Electoral College Tilegram</h4>
+<div id="electoral-college-tilegram" class="section level5">
+<h5>Electoral College Tilegram</h5>
 <ul>
-<li><strong>DKOS_Distorted_Electoral_College_Map_v1</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>DKOS_Distorted_Electoral_College_Map_v1.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_DKOS_Electoral_College_Map_v1</strong>: A <code>sf</code> object where each feature = 1 electoral college</li>
+<li><strong>sf_DKOS_Electoral_College_Map_v1.states</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_DKOS_Electoral_College_Map_v1.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
-<div id="npr.demerscartogram" class="section level4">
-<h4>NPR.DemersCartogram</h4>
+<div id="distorted-electoral-college-tilegram" class="section level5">
+<h5>Distorted Electoral College Tilegram</h5>
 <ul>
-<li><strong>NPR.DemersCartogram</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>NPR.DemersCartogram.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_DKOS_Distorted_Electoral_College_Map_v1</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_DKOS_Distorted_Electoral_College_Map_v1.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
+</div>
 </div>
 <div id="washington-post-tilegram" class="section level4">
 <h4>Washington Post Tilegram</h4>
 <ul>
-<li><strong>WP</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>WP.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_WP</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_WP.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
 <div id="wall-street-journal-tilegram" class="section level4">
 <h4>Wall Street Journal Tilegram</h4>
 <ul>
-<li><strong>WSJ</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>WSJ.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_WSJ</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_WSJ.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
 </div>
 <div id="datamap.io.tilegram" class="section level4">
 <h4>Datamap.io.tilegram</h4>
 <ul>
-<li><strong>Datamap.io.tilegram</strong>: A <code>SpatialPolygonsDataFrame</code> where each polygon = 1 state</li>
-<li><strong>Datamap.io.tilegram.centers</strong>: A <code>SpatialPointsDataFrame</code> of centroids of each state</li>
+<li><strong>sf_Datamap.io.tilegram</strong>: A <code>sf</code> object where each feature = 1 state of the U.S.A</li>
+<li><strong>sf_Datamap.io.tilegram.centers</strong>: A <code>sf</code> object of centroids of each state of the U.S.A.</li>
 </ul>
+<p>As and when newer Tilegrams are made available they will be added to this package.</p>
 </div>
+</div>
+<div id="credits" class="section level3">
+<h3>Credits</h3>
+<ul>
+<li><a href="https://twitter.com/pitchinc">Pitch Interactive</a> for the excellent <a href="https://pitchinteractiveinc.github.io/tilegrams/">Tilegrams</a> webapp and population tilegram.</li>
+<li><a href="https://twitter.com/donnermaps">Daniel Donner</a> of <a href="https://refinery.dailykosbeta.com/elections-maps">Daily KOS</a> for Tilegrams.</li>
+<li><a href="https://twitter.com/ellawinthrop">Ella Koeze</a> for <a href="https://projects.fivethirtyeight.com/2016-election-forecast/">fivethirtyeight[.]com</a> Tilegrams.</li>
+<li><a href="https://twitter.com/dannydb">Danny DeBelius</a> &amp; <a href="https://twitter.com/brianboyer">Brian Boyer</a> for <a href="http://blog.apps.npr.org/2015/05/11/hex-tile-maps.html">NPR</a>’s Hexagon Tilegrams.</li>
+<li><a href="http://www.npr.org/2016/10/18/498406765/npr-battleground-map-hillary-clinton-is-winning-and-its-not-close">NPR Demers Cartogram</a></li>
+<li><a href="https://www.washingtonpost.com/graphics/politics/2016-election/50-state-poll/">Washington Post Tilegram</a></li>
+<li><a href="http://graphics.wsj.com/elections/2016/2016-electoral-college-map-predictions/">Wall Street Journal Tilegram</a></li>
+<li><a href="https://elections.datamap.io/us/2016/09/23/electoral_college_forecast">Datamap.io Tilegram</a></li>
+</ul>
 </div>
 
 
